@@ -1,4 +1,4 @@
-name: Build PDF Report
+name: Build and Commit PDF Report
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y texlive-xetex texlive-fonts-recommended texlive-plain-generic pandoc
+        sudo apt-get install -y texlive-xetex texlive-fonts-recommended texlive-plain-generic pandoc git
 
     - name: Build PDF report
       run: |
@@ -37,8 +37,15 @@ jobs:
           --toc \
           -o deliverables/Digital_Banking_in_Vietnam.pdf
 
-    - name: Upload PDF artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: digital-banking-report
-        path: deliverables/Digital_Banking_in_Vietnam.pdf
+    - name: Configure Git user
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: Commit and push PDF report
+      run: |
+        git add deliverables/Digital_Banking_in_Vietnam.pdf
+        git commit -m "Update PDF report [skip ci]" || echo "No changes to commit"
+        git push origin main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
