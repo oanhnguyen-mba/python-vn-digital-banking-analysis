@@ -1,0 +1,58 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{float}
+
+% Table column spacing fix
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{10pt}
+
+% Section formatting
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+% Line spacing
+\onehalfspacing
+
+% Metadata
+\title{$title$}
+\author{$author$}
+\date{$date$}
+
+\geometry{
+    a4paper,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm
+}
+
+\begin{document}
+
+% Cover page
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\Huge\bfseries $title$ \par}
+    \vspace{1cm}
+    {\Large $subtitle$ \par}
+    \vfill
+    {\Large \textbf{$author$} \par}
+    \vspace{0.5cm}
+    {\large $date$ \par}
+    \vspace*{3cm}
+\end{titlepage}
+
+% TOC
+\tableofcontents
+\newpage
+
+$body$
+
+\end{document}
